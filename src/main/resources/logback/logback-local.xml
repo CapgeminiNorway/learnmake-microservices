@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${MAIN_FILE_LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+    <logger name="catpet.learnmake.jib" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</included>

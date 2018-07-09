@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="layoutHeadFragment">
+
+	<title th:include=":: #pageTitle">Netbank Bedrift</title>
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript" src="/wro/weblibs.js"  th:src="@{/wro/weblibs.js}"> </script>
+    <!-- APP specific resources
+    <script type="text/javascript" src="/wro/app.js"  th:src="@{/wro/app.js}"> </script>
+    -->
+
+    <!-- ENV-aware loading resources related to Session-TIMEOUT-Checker! -->
+    <script th:if="${not #arrays.isEmpty(@environment.getActiveProfiles())}"
+            th:with="theEnv=${@environment.getActiveProfiles()[0]}"
+            type="text/javascript"
+            th:src="@{/wro/ext-__${theEnv}__.js}">
+    </script>
+
+</head>
+</html>

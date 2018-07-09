@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<property name="MAIN_FILE_LOG_PATTERN" value="%date{&quot;YYYY-MM-dd&apos;T&apos;hh:mm:ss&apos;,&apos;SSSZZZ&quot;, CET} %highlight(${LOG_LEVEL_PATTERN:-%5p}) [%cyan(%-40.40logger{36})] - %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+	<property name="DEBUG_FILE_LOG_PATTERN" value="%date{&quot;YYYY-MM-dd&apos;T&apos;hh:mm:ss&apos;,&apos;SSSZZZ&quot;, CET} ${LOG_LEVEL_PATTERN:-%5p} [%X{clazz}] - %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+
+	<!-- TODO make use of spring.profiles.active to create log config per env
+	<include resource="logback/logback-${spring.profiles.active}.xml" />
+	-->
+	<include resource="logback/logback-local.xml" />
+
+	<jmxConfigurator />
+</configuration>

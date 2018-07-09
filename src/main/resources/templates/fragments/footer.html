@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<div th:fragment="footer">
+	
+
+	<div class="row">
+			<div class="padding"></div>
+			<div class="col-sm-2">
+				<div style="float:right;">
+						<a style="margin-top: 5px; cursor:pointer;" ng-click="scrollToTop(); $event.stopPropagation();">Til toppen</a>
+						<a title="Til toppen" style="cursor:pointer;" ng-click="scrollToTop(); $event.stopPropagation();"><img alt="^" src="images/bt.gif"></img></a>
+				</div>
+			</div>
+			<div class="col-sm-8 last" style="color: #999999; margin-top: 5px; font-size:75%">
+				<span th:utext="#{catpet.footer}"></span>
+			</div>
+	</div>
+
+</div>
+</body>
+</html>

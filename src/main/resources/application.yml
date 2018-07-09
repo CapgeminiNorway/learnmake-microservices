@@ -1,0 +1,32 @@
+server:
+  port: 4042
+
+info:
+  app:
+    name: LearnMake JIB MIS
+    description: Demo using Microservices with Spring Boot, JIB
+
+spring:
+  application:
+    name: learnmake_jib
+  profiles:
+    active: local
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  thymeleaf:
+    cache: false
+  autoconfigure:
+    # use custom error page
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+
+logging:
+  level:
+    root: INFO
+    DEBUGLOGGER: DEBUG
+    org:
+      springframework:
+        web: INFO
+        filter:
+          CommonsRequestLoggingFilter: DEBUG
+      hibernate: ERROR

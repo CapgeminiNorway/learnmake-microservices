@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>catpet.learnmake</groupId>
+	<artifactId>learnmake-jib</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>learnmake-jib</name>
+	<description>Demo project for Spring Boot and JIB</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<docker.image.prefix>gcr.io/catpet-205415</docker.image.prefix>
+
+		<!-- keep dependency versions organized -->
+		<versions.guava>25.1-jre</versions.guava>
+		<versions.commons_lang3>3.7</versions.commons_lang3>
+		<versions.logback_classic>1.2.3</versions.logback_classic>
+		<versions.logstash_logback_encoder>5.1</versions.logstash_logback_encoder>
+		<versions.slf4j_api>1.7.25</versions.slf4j_api>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- common utils - required for internal logic -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${versions.guava}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${versions.commons_lang3}</version>
+		</dependency>
+		<!-- Logging - required for Kibana integration -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${versions.logback_classic}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${versions.logstash_logback_encoder}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${versions.slf4j_api}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+						<configuration>
+							<additionalProperties>
+								<encoding.source>UTF-8</encoding.source>
+								<encoding.reporting>UTF-8</encoding.reporting>
+								<java.source>${maven.compiler.source}</java.source>
+								<java.target>${maven.compiler.target}</java.target>
+							</additionalProperties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>0.9.2</version>
+				<configuration>
+					<!-- default: gcr.io/distroless/java
+					<from>
+						<image>openjdk:alpine</image>
+						<credHelper>gcr</credHelper>
+					</from> -->
+					<to>
+						<!-- <image>eu.gcr.io/catpet/learnmake-jib</image> -->
+						<image>${docker.image.prefix}/${project.artifactId}</image>
+						<credHelper>gcr</credHelper>
+					</to>
+					<container>
+						<jvmFlags>
+							<jvmFlag>-Xms256m</jvmFlag>
+							<jvmFlag>-Xmx512m</jvmFlag>
+							<jvmFlag>-Xdebug</jvmFlag>
+							<jvmFlag>-XX:+UnlockExperimentalVMOptions</jvmFlag>
+							<jvmFlag>-XX:+UseCGroupMemoryLimitForHeap</jvmFlag>
+							<jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
+							<!-- <jvmFlag>-Xmy:flag=jib-rules</jvmFlag> -->
+						</jvmFlags>
+						<mainClass>catpet.learnmake.jib.RunApplication</mainClass>
+						<!-- <args>
+							<arg>some</arg>
+							<arg>args</arg>
+						</args> -->
+						<ports>
+							<port>4042</port>
+							<port>4000-4004/udp</port>
+						</ports>
+						<format>OCI</format>
+					</container>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
