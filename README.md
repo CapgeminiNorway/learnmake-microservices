@@ -23,12 +23,12 @@ Getting up and running for your dev-env is as easy as counting 1 to 4 :-)
 
     ```
     git clone https://github.com/CapgeminiNorway/learnmake-microservices  
-    cd path/to/using-microservices  
+    cd path/to/learnmake-microservices  
     mvn clean compile  
     ```
 
 3. Build, containerize & push to docker repository  
-    _nb! make sure you already have created a project at Google Cloud Platform, then set it inside `pom.xml`_    
+    _nb! make sure you already have created a project at Google Cloud Platform, then set `docker.image.prefix` inside `pom.xml`_      
 
     ```
     mvn clean compile jib:build -e
