@@ -9,9 +9,8 @@ Learn-Make _Microservices using Spring Boot, JIB, Docker_
 ## Reading   
 Some useful links to advance your learning:     
 
-- Containerize Java App into Docker images via [Google's JIB](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin)           
-- TBD [tbd](tbd_url)     
-- TBD [tbd](tbd_url)      
+- Building apps with [Spring Boot](https://spring.io/guides/gs/spring-boot/)       
+- Containerize Java App into Docker images via [Google's JIB](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin)               
 
 
 ## Setup your DEV env      
@@ -29,6 +28,7 @@ Getting up and running for your dev-env is as easy as counting 1 to 4 :-)
     ```
 
 3. Build, containerize & push to docker repository  
+    _nb! make sure you already have created a project at Google Cloud Platform, then set it inside `pom.xml`_    
 
     ```
     mvn clean compile jib:build -e
