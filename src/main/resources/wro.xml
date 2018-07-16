@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro">
+
+    <!-- external libraries to load using webjars -->
+    <group name="weblibs">
+        <js>classpath:META-INF/resources/webjars/jquery/3.3.1/jquery.js</js>
+        <js>classpath:META-INF/resources/webjars/bootstrap/3.3.7/js/bootstrap.js</js>
+        <css>classpath:META-INF/resources/webjars/bootstrap/3.3.7/css/bootstrap.css</css>
+        <css>classpath:META-INF/resources/webjars/bootstrap/3.3.7/css/bootstrap-theme.css</css>
+    </group>
+    <!-- APP specific resources -->
+    <!--
+  	<group name="app">
+	</group>
+    -->
+
+    <!-- (per-ENV) libs related to APP! -->
+    <!-- NOTE! the loading order of these resources is important! -->
+    <group name="ext-local">
+    </group>
+
+    <group name="ext-nais">
+    </group>
+
+</groups>
