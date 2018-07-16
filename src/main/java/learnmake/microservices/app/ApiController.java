@@ -1,4 +1,4 @@
-package catpet.learnmake.jib.app;
+package learnmake.microservices.app;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

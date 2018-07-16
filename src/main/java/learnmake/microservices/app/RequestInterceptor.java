@@ -1,7 +1,7 @@
-package catpet.learnmake.jib.app;
+package learnmake.microservices.app;
 
-import catpet.learnmake.jib.utils.AppConstants;
-import catpet.learnmake.jib.utils.CookieUtil;
+import learnmake.microservices.utils.AppConstants;
+import learnmake.microservices.utils.CookieUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.FlashMap;

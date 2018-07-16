@@ -3,12 +3,12 @@ server:
 
 info:
   app:
-    name: LearnMake JIB MIS
-    description: Demo using Microservices with Spring Boot, JIB
+    name: learnmake_microservices
+    description: Demo using Microservices with Spring Boot, JIB, Docker, k8s
 
 spring:
   application:
-    name: learnmake_jib
+    name: learnmake_microservices
   profiles:
     active: local
   jackson:

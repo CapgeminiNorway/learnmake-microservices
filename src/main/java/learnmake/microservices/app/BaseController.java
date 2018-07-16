@@ -1,4 +1,4 @@
-package catpet.learnmake.jib.app;
+package learnmake.microservices.app;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

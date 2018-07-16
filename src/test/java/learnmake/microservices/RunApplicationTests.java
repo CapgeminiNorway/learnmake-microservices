@@ -1,4 +1,4 @@
-package catpet.learnmake.jib;
+package learnmake.microservices;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

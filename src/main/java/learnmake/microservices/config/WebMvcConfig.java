@@ -1,6 +1,6 @@
-package catpet.learnmake.jib.config;
+package learnmake.microservices.config;
 
-import catpet.learnmake.jib.app.RequestInterceptor;
+import learnmake.microservices.app.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ import javax.annotation.PostConstruct;
 import java.util.Locale;
 
 @Configuration
-@ComponentScan(basePackages = { "catpet.learnmake.jib.app" })
+@ComponentScan(basePackages = { "learnmake.microservices.app" })
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Value("${spring.application.name}")
@@ -48,7 +48,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/catpet/wro/**", "/wro/**").setCacheControl(CacheControl.noCache());
+        registry.addResourceHandler("/learnmake/wro/**", "/wro/**").setCacheControl(CacheControl.noCache());
     }
 
     @Bean

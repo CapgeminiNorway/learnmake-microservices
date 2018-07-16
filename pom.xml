@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>catpet.learnmake</groupId>
-	<artifactId>learnmake-jib</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<groupId>learnmake.microservices</groupId>
+	<artifactId>learnmake-microservices</artifactId>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>learnmake-jib</name>
+	<name>learnmake-microservices</name>
 	<description>Demo project for Spring Boot and JIB</description>
 
 	<parent>
@@ -25,7 +25,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<docker.image.prefix>gcr.io/catpet-205415</docker.image.prefix>
+		<!-- FIXME: make sure you already have created a project at Google Cloud Platform -->
+		<docker.image.prefix>gcr.io/my-GCP-project</docker.image.prefix>
 
 		<!-- keep dependency versions organized -->
 		<versions.jib_maven_plugin>0.9.4</versions.jib_maven_plugin>
@@ -114,12 +115,11 @@
 				<version>${versions.jib_maven_plugin}</version>
 				<configuration>
 					<allowInsecureRegistries>true</allowInsecureRegistries>
-					<!-- default: gcr.io/distroless/java
 					<from>
-						<image>openjdk:8-jdk-alpine</image>
-					</from> -->
+						<image>gcr.io/distroless/java</image>
+					</from>
 					<to>
-						<!-- <image>eu.gcr.io/catpet/learnmake-jib</image> -->
+						<!-- see https://cloud.google.com/container-registry/ -->
 						<image>${docker.image.prefix}/${project.artifactId}:${project.version}</image>
 						<credHelper>gcr</credHelper>
 					</to>
@@ -131,9 +131,8 @@
 							<jvmFlag>-XX:+UnlockExperimentalVMOptions</jvmFlag>
 							<jvmFlag>-XX:+UseCGroupMemoryLimitForHeap</jvmFlag>
 							<jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
-							<!-- <jvmFlag>-Xmy:flag=jib-rules</jvmFlag> -->
 						</jvmFlags>
-						<mainClass>catpet.learnmake.jib.RunApplication</mainClass>
+						<mainClass>learnmake.microservices.RunApplication</mainClass>
 						<!-- <args>
 							<arg>some</arg>
 							<arg>args</arg>
@@ -143,7 +142,7 @@
 							<!-- <port>4000-4004/udp</port> -->
 						</ports>
 						<format>OCI</format>
-						<!-- <format>Docker</format> -->
+						<!--OR <format>Docker</format> -->
 					</container>
 				</configuration>
 			</plugin>

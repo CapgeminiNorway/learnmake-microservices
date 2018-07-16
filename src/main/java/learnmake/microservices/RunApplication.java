@@ -1,22 +1,23 @@
-package catpet.learnmake.jib;
+package learnmake.microservices;
 
-import catpet.learnmake.jib.config.AppContextInitializer;
-import catpet.learnmake.jib.config.MainConfig;
+import learnmake.microservices.config.AppContextInitializer;
+import learnmake.microservices.config.MainConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @Import(MainConfig.class)
 public class RunApplication implements CommandLineRunner {
 
-	/* public static void main(String[] args) {
-		SpringApplication.run(RunApplication.class, args);
-	} */
 	private Logger logger = LoggerFactory.getLogger(RunApplication.class);
+    @Autowired
+    Environment environment;
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(RunApplication.class)
@@ -30,7 +31,7 @@ public class RunApplication implements CommandLineRunner {
 		for (String option : args) {
 			sb.append(" ").append(option);
 		}
-		sb = sb.length() == 0 ? sb.append("No Options Specified") : sb;
-		logger.info(String.format("WAR launched with following options: %s", sb.toString()));
+		sb = sb.length() == 0 ? sb.append("No extra options specified") : sb;
+		logger.info(String.format("APP launched with options: %s", sb.toString()));
 	}
 }

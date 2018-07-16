@@ -1,6 +1,6 @@
-package catpet.learnmake.jib.app;
+package learnmake.microservices.app;
 
-import catpet.learnmake.jib.utils.AppConstants;
+import learnmake.microservices.utils.AppConstants;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

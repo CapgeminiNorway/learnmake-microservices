@@ -1,4 +1,4 @@
-package catpet.learnmake.jib.utils;
+package learnmake.microservices.utils;
 
 public final class AppConstants {
 
