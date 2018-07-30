@@ -5,7 +5,7 @@
 
 	<groupId>learnmake.microservices</groupId>
 	<artifactId>learnmake-microservices</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>learnmake-microservices</name>
@@ -25,11 +25,14 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<!-- FIXME: make sure you already have created a project at Google Cloud Platform -->
+		<!--
+		FIXME: make sure you already have created a project at Google Cloud Platform
+		e.g. my dev-project is: gcr.io/catpet-205415
+		-->
 		<docker.image.prefix>gcr.io/my-GCP-project</docker.image.prefix>
 
 		<!-- keep dependency versions organized -->
-		<versions.jib_maven_plugin>0.9.4</versions.jib_maven_plugin>
+		<versions.jib_maven_plugin>0.9.7</versions.jib_maven_plugin>
 		<versions.guava>25.1-jre</versions.guava>
 		<versions.commons_lang3>3.7</versions.commons_lang3>
 		<versions.logback_classic>1.2.3</versions.logback_classic>
@@ -143,6 +146,7 @@
 						</ports>
 						<format>OCI</format>
 						<!--OR <format>Docker</format> -->
+						<useCurrentTimestamp>true</useCurrentTimestamp>
 					</container>
 				</configuration>
 			</plugin>
