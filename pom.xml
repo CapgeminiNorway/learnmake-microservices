@@ -29,7 +29,7 @@
 		FIXME: make sure you already have created a project at Google Cloud Platform
 		e.g. my dev-project is: gcr.io/catpet-205415
 		-->
-		<docker.image.prefix>gcr.io/my-GCP-project</docker.image.prefix>
+		<docker.image.prefix>gcr.io/my-gcp-project</docker.image.prefix>
 
 		<!-- keep dependency versions organized -->
 		<versions.jib_maven_plugin>0.9.7</versions.jib_maven_plugin>

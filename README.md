@@ -27,11 +27,19 @@ Getting up and running for your dev-env is as easy as counting 1 to 4 :-)
     mvn clean compile  
     ```
 
-3. Build, containerize & push to docker repository  
-    _nb! make sure you already have created a project at Google Cloud Platform, then set `docker.image.prefix` inside `pom.xml`_      
+3. Build, containerize & push to docker repository    
+    
+    - Build and push a container image for your application to a container registry.  
+    _nb! make sure you already have created a project at Google Cloud Platform, then set `docker.image.prefix` inside `pom.xml`_                  
 
-    ```
+    ``` 
     mvn clean compile jib:build -e
+    ```  
+    If you encounter authentication issues, see [Authentication Methods](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#authentication-methods).  
+            
+    To build to a Docker daemon, use:  
+    ```
+    mvn clean compile jib:dockerBuild -e
     ```    
     ...  
 
