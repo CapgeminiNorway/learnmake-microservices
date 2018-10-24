@@ -5,7 +5,7 @@
 
 	<groupId>learnmake.microservices</groupId>
 	<artifactId>learnmake-microservices</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.8</version>
 	<packaging>jar</packaging>
 
 	<name>learnmake-microservices</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -29,15 +29,16 @@
 		FIXME: make sure you already have created a project at Google Cloud Platform
 		e.g. my dev-project is: gcr.io/catpet-205415
 		-->
-		<docker.image.prefix>gcr.io/my-gcp-project</docker.image.prefix>
+		<docker.image.prefix>gcr.io/catpet-205415</docker.image.prefix>
 
 		<!-- keep dependency versions organized -->
-		<versions.jib_maven_plugin>0.9.7</versions.jib_maven_plugin>
-		<versions.guava>25.1-jre</versions.guava>
+		<versions.jib-maven-plugin>0.9.13</versions.jib-maven-plugin>
+		<versions.guava>27.0-jre</versions.guava>
 		<versions.commons_lang3>3.7</versions.commons_lang3>
 		<versions.logback_classic>1.2.3</versions.logback_classic>
 		<versions.logstash_logback_encoder>5.1</versions.logstash_logback_encoder>
 		<versions.slf4j_api>1.7.25</versions.slf4j_api>
+		<version.lombok>1.18.2</version.lombok>
 
 	</properties>
 
@@ -71,6 +72,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${versions.commons_lang3}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+			<version>${version.lombok}</version>
 		</dependency>
 		<!-- Logging - required for Kibana integration -->
 		<dependency>
@@ -115,7 +122,7 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>${versions.jib_maven_plugin}</version>
+				<version>${versions.jib-maven-plugin}</version>
 				<configuration>
 					<allowInsecureRegistries>true</allowInsecureRegistries>
 					<from>

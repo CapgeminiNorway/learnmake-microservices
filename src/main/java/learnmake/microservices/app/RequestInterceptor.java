@@ -2,6 +2,7 @@ package learnmake.microservices.app;
 
 import learnmake.microservices.utils.AppConstants;
 import learnmake.microservices.utils.CookieUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.FlashMap;
@@ -14,14 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@Slf4j
 public class RequestInterceptor implements HandlerInterceptor {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RequestInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        LOGGER.debug("Request Intercepted! "
+        log.debug("Request Intercepted! "
                     + "method: {} - servletPath: {}", request.getMethod(), request.getServletPath()
         );
 
@@ -46,7 +46,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 
                     response.sendRedirect(request.getContextPath());
                 } catch (IOException ioex) {
-                    LOGGER.error(RequestInterceptor.class.getSimpleName()+".preHandle", ioex);
+                    log.error(RequestInterceptor.class.getSimpleName()+".preHandle", ioex);
                 }
 
                 return false;

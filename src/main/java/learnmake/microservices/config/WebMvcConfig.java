@@ -20,45 +20,51 @@ import javax.annotation.PostConstruct;
 import java.util.Locale;
 
 @Configuration
-@ComponentScan(basePackages = { "learnmake.microservices.app" })
+@ComponentScan(basePackages = {"learnmake.microservices.app"})
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${spring.application.name}")
-    private String appName;
+  @Value("${spring.application.name}")
+  private String appName;
 
-    @Autowired
-    private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
+  @Autowired
+  private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 
-    @PostConstruct
-    public void init() {
-        requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true); // avoid model attributes appearing in the URL after a redirect.
-    }
+  @PostConstruct
+  public void init() {
+    requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(
+        true); // avoid model attributes appearing in the URL after a redirect.
+  }
 
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer contentNegotiationConfigurer) {
-        contentNegotiationConfigurer.defaultContentType(MediaType.APPLICATION_JSON_UTF8);
-    }
+  @Override
+  public void configureContentNegotiation(
+      ContentNegotiationConfigurer contentNegotiationConfigurer) {
+    contentNegotiationConfigurer.defaultContentType(MediaType.APPLICATION_JSON_UTF8);
+  }
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(new Locale("nb", "NO"));
-        return localeResolver;
-    }
+  @Bean
+  public LocaleResolver localeResolver() {
+    SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+    localeResolver.setDefaultLocale(new Locale("nb", "NO"));
+    return localeResolver;
+  }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/learnmake/wro/**", "/wro/**").setCacheControl(CacheControl.noCache());
-    }
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/learnmake/wro/**", "/wro/**")
+        .setCacheControl(CacheControl.noCache());
+  }
 
-    @Bean
-    public RequestInterceptor requestInterceptor() {
-        return new RequestInterceptor();
-    }
+  @Bean
+  public RequestInterceptor requestInterceptor() {
+    return new RequestInterceptor();
+  }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(requestInterceptor()).addPathPatterns("/**");
-    }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(requestInterceptor())
+        .addPathPatterns("/**")
+        .excludePathPatterns("/api/pulse")
+    ;
+  }
 
 }

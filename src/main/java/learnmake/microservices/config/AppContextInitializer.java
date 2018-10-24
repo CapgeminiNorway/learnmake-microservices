@@ -1,5 +1,6 @@
 package learnmake.microservices.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContextInitializer;
@@ -12,13 +13,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@Slf4j
 public class AppContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-    private static final Logger logger = LoggerFactory.getLogger(AppContextInitializer.class);
 
     @Override
     public void initialize(ConfigurableApplicationContext ac) {
-        logger.info("Application started with active profiles: " + Arrays.asList(ac.getEnvironment().getActiveProfiles()));
+        log.info("Application started with active profiles: " + Arrays.asList(ac.getEnvironment().getActiveProfiles()));
 
         Map<String, Object> mapElements = new HashMap<>();
         for (Iterator<PropertySource<?>> it = (ac.getEnvironment()).getPropertySources().iterator(); it.hasNext();) {
@@ -32,7 +32,7 @@ public class AppContextInitializer implements ApplicationContextInitializer<Conf
         for (Map.Entry<String, Object> entry : mapElements.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            logger.debug(key + " : " + value);
+            log.debug(key + " : " + value);
         }
     }
 
